@@ -21,6 +21,7 @@ export default function FormField({
       {cloneElement(children, {
         'aria-invalid': Boolean(error),
         'aria-describedby': describedBy,
+        'aria-required': children.props.required ?? undefined,
       })}
       {hint && !error && (
         <p id={hintId} className="form-field__hint">

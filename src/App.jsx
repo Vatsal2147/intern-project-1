@@ -1,9 +1,13 @@
+import AnimatedBackground from './components/AnimatedBackground.jsx';
 import SettingsForm from './components/SettingsForm.jsx';
 
 export default function App() {
   return (
-    <main className="app">
-      <SettingsForm />
-    </main>
+    <>
+      <AnimatedBackground />
+      <main className="app" id="main-content">
+        <SettingsForm />
+      </main>
+    </>
   );
 }

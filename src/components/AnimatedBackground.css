@@ -1,0 +1,72 @@
+.animated-background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 45%, #312e81 100%);
+}
+
+.animated-background__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.65;
+  animation: orb-drift 18s ease-in-out infinite alternate;
+}
+
+.animated-background__orb--one {
+  width: 420px;
+  height: 420px;
+  top: -8%;
+  left: -6%;
+  background: radial-gradient(circle, #f472b6, #db2777);
+  animation-duration: 16s;
+}
+
+.animated-background__orb--two {
+  width: 360px;
+  height: 360px;
+  top: 20%;
+  right: -10%;
+  background: radial-gradient(circle, #38bdf8, #0284c7);
+  animation-duration: 20s;
+  animation-delay: -4s;
+}
+
+.animated-background__orb--three {
+  width: 480px;
+  height: 480px;
+  bottom: -12%;
+  left: 18%;
+  background: radial-gradient(circle, #a78bfa, #7c3aed);
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.animated-background__orb--four {
+  width: 300px;
+  height: 300px;
+  bottom: 10%;
+  right: 12%;
+  background: radial-gradient(circle, #fbbf24, #ea580c);
+  animation-duration: 14s;
+  animation-delay: -2s;
+}
+
+@keyframes orb-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
+  100% {
+    transform: translate(-30px, 40px) scale(0.95);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated-background__orb {
+    animation: none;
+  }
+}

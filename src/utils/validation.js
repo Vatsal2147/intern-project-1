@@ -1,12 +1,17 @@
 /** Basic email format check — not exhaustive, but catches common typos. */
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+export const MIN_PASSWORD_LENGTH = 8;
+
 export const initialSettings = {
   name: '',
   email: '',
   password: '',
   confirmPassword: '',
 };
+
+/** All settings field names — used to mark every field touched on submit. */
+export const SETTINGS_FIELD_NAMES = Object.keys(initialSettings);
 
 /**
  * Validates every field and returns an object keyed by field name.
@@ -29,8 +34,8 @@ export function validateSettings(values) {
 
   if (!values.password) {
     errors.password = 'Password is required.';
-  } else if (values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters.';
+  } else if (values.password.length < MIN_PASSWORD_LENGTH) {
+    errors.password = `Password must be at least ${MIN_PASSWORD_LENGTH} characters.`;
   }
 
   if (!values.confirmPassword) {
@@ -47,7 +52,15 @@ export function validateField(name, values) {
   return validateSettings(values)[name] ?? '';
 }
 
-/** Returns true when every field passes validation. Used to enable the submit button. */
+/** Returns true when every field passes validation — used to enable the submit button. */
 export function isSettingsValid(values) {
   return Object.keys(validateSettings(values)).length === 0;
+}
+
+/** Builds a trimmed payload safe to send to the server (passwords excluded). */
+export function buildSettingsPayload(values) {
+  return {
+    name: values.name.trim(),
+    email: values.email.trim(),
+  };
 }
