@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import FormField from './FormField.jsx';
 import {
   initialSettings,
@@ -11,8 +11,14 @@ import './SettingsForm.css';
 export default function SettingsForm() {
   const [values, setValues] = useState(initialSettings);
   const [errors, setErrors] = useState({});
+  // Track which fields the user has left — errors show only after blur or submit.
   const [touched, setTouched] = useState({});
   const [status, setStatus] = useState(null);
+
+  // Keep a ref so blur handlers always validate the latest input, even if
+  // React has not re-rendered since the last keystroke.
+  const valuesRef = useRef(values);
+  valuesRef.current = values;
 
   // Recompute submit availability on every change — no need to wait for blur.
   const canSubmit = isSettingsValid(values);
@@ -56,7 +62,7 @@ export default function SettingsForm() {
     setErrors((current) => {
       const nextErrors = { ...current };
       [...new Set(fieldsToValidate)].forEach((field) => {
-        nextErrors[field] = validateField(field, values);
+        nextErrors[field] = validateField(field, valuesRef.current);
       });
       return nextErrors;
     });

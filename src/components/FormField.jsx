@@ -1,5 +1,9 @@
 import { cloneElement } from 'react';
 
+/**
+ * Wraps a labeled input with optional hint and inline error messaging.
+ * Wires aria-invalid and aria-describedby so screen readers announce errors.
+ */
 export default function FormField({
   id,
   label,
