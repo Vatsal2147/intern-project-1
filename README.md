@@ -11,3 +11,9 @@ This repository contains my internship capstone project.
 ## Goal
 
 Learn AI-assisted software development using Cursor.
+
+## Installation
+
+```bash
+npm install
+npm run dev
