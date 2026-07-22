@@ -4,9 +4,13 @@ This repository contains my internship capstone project.
 
 ## Tech Stack
 
+**Frontend**
 - React
 - Vite
 - JavaScript
+**Backend**
+- Node.js
+- Express (or whatever you use)
 
 ## Goal
 
